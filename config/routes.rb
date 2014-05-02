@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :subs
   resources :links do
     resources :comments, only: [:create]
+    member do
+      post "upvote"
+      post "downvote"
+    end
   end
 
   resources :comments, only: [:show, :destroy]

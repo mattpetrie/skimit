@@ -6,7 +6,7 @@
 <p>Links:</p>
 <ul>
   <% @sub.links.each do |link| %>
-    <li><%= link_to link.title, link_url(link) %> submitted by:
+    <li><%= link.votes %> | <%= link_to link.title, link_url(link) %> submitted by:
         <%= link.submitter.username %></li>
   <% end %>
 </ul>

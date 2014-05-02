@@ -48,6 +48,14 @@ class LinksController < ApplicationController
     end
   end
 
+  def upvote
+    vote(1)
+  end
+
+  def downvote
+    vote(-1)
+  end
+
   private
 
   def link_params
@@ -60,6 +68,23 @@ class LinksController < ApplicationController
       flash[:errors] = ["You didn't submit this link"]
       redirect_to link_url(link)
     end
+  end
+
+  def vote(dir)
+    @link = Link.find(params[:id])
+    @user_vote = UserVote.find_by_link_id_and_user_id(@link.id, current_user.id)
+
+    if @user_vote
+      if @user_vote.value == dir 
+        @user_vote.update_attributes(value: 0)
+      else
+        @user_vote.update_attributes(value: dir)
+      end
+    else
+      @link.user_votes.create(user: current_user, value: dir)
+    end
+
+    redirect_to @link
   end
 end
 

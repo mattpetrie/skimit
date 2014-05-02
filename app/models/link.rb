@@ -22,6 +22,8 @@ class Link < ActiveRecord::Base
 
   has_many :comments
 
+  has_many :user_votes
+
   def comments_by_parent_id
     comments = Comment.where(link: self)
     comment_family = Hash.new { |h,k| h[k] = [] }
@@ -30,5 +32,9 @@ class Link < ActiveRecord::Base
       comment_family[comment.parent_comment_id] << comment
     end
     comment_family
+  end
+
+  def votes
+    self.user_votes.sum(:value)
   end
 end

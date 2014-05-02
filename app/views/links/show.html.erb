@@ -1,4 +1,4 @@
-<h1><%= @link.title %></h1>
+<h1><%= @link.votes %> | <%= @link.title %></h1>
 <% if @link.submitter == current_user %>
   <%= link_to "Edit Link", edit_link_url(@link )%>
 <% end %>
@@ -6,6 +6,9 @@
 <h2><%= link_to @link.url, @link.url %></h2>
 
 <p><%= @link.text %></p>
+
+<%= button_to "Upvote", action: :upvote %>
+<%= button_to "Downvote", action: :downvote %>
 <h3>Subs</h3>
 <p><%= @link.subs_list %></p>
 <%= render partial: 'comments/form', 

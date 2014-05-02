@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
 
   has_many :comments, foreign_key: :author_id
 
+  has_many :user_votes
+
   attr_reader :password
 
   def self.generate_session_token
