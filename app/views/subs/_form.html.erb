@@ -1,0 +1,21 @@
+<% action = sub.persisted? ? sub_url(sub) : subs_url %>
+<% method = sub.persisted? ? :patch : :post %>
+<% submit_value = sub.persisted? ? 'Update Sub' : 'Create Sub' %>
+
+<form action="<%= action %>" method="POST">
+  <%= auth_token %>
+  <%= submit_method_type(method) %>
+
+  <label>Name
+    <input type="text" name="sub[name]" value="<%= sub.name %>">
+  </label>
+  <br>
+
+  <h3>Add Links</h3>
+
+  <% @sub.links.each do |link| %>
+    <%= render 'links/form_attributes', link: link %><br>
+  <% end %>
+
+  <input type="submit" value="<%= submit_value %>">
+</form>
