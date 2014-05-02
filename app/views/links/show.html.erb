@@ -1,0 +1,10 @@
+<h1><%= @link.title %></h1>
+<% if @link.submitter == current_user %>
+  <%= link_to "Edit Link", edit_link_url(@link )%>
+<% end %>
+
+<h2><%= link_to @link.url, @link.url %></h2>
+
+<p><%= @link.text %></p>
+
+<p><%= @link.subs_list %></p>

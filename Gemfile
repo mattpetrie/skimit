@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'annotate'
 gem 'pry-rails'
 gem 'bcrypt'
+gem 'draper'
 
 group :development, :test do
   gem 'rspec-rails'

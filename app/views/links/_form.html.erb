@@ -1,0 +1,35 @@
+<% action = link.persisted? ? link_url(link) : links_url %>
+<% method = link.persisted? ? 'PATCH' : 'POST' %>
+<% submit_val = link.persisted? ? 'Update Link' : 'Create Link' %>
+
+<form action="<%= action %>" method="POST">
+  <%= auth_token %>
+  <%= submit_method_type(method) %>
+
+  <label>Title
+    <input type="text" name="link[title]" value="<%= link.title %>">
+  </label>
+
+  <label>URL
+    <input type="text" name="link[url]" value="<%= link.url %>">
+  </label>
+
+  <label>Description
+    <textarea name="link[text]" value="<%= link.text %>"></textarea>
+  </label>
+
+  <label>Select Subs
+    <input type="hidden" name="link[sub_ids][]" value="">
+    <% @subs.each do |sub| %>
+      <label>
+        <input type="checkbox"
+          name="link[sub_ids][]"
+          value="<%= sub.id %>"
+          <%= "checked" if link.subs.include?(sub) %>>
+        <%= sub.name %>
+      </label>
+    <% end %>
+  </label>
+
+  <input type="submit" value="<%= submit_val %>">
+</form>
