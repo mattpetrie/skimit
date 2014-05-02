@@ -1,0 +1,6 @@
+<%= link_to "Back to Link", link_url(@comment.link) %>
+<h1>Comment for <%= link_to @comment.link.title, link_url(@comment.link) %></h1>
+<p><%= @comment.body %></p>
+<h3>Reply</h3>
+<%= render partial: 'comments/form', 
+  locals: { link: @comment.link, parent_comment: @comment } %>

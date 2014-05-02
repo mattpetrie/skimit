@@ -1,0 +1,9 @@
+<form action="<%= link_comments_url(link) %>" method="POST">
+	<%= auth_token %>
+	<label>New Comment
+	  <textarea name="comment[body]" cols="30" rows="5"></textarea>  
+	</label>
+	<input type="hidden" name="comment[parent_comment_id]" 
+		value="<%= parent_comment.id %>">
+	<input type="submit" value="Add Comment">
+</form>

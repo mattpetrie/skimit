@@ -9,12 +9,12 @@ development:
   <<: *default
   database: skimit_development
   host: localhost
-  username: appacademy
+  username: matt
 
 
 test:
   <<: *default
   database: skimit_test
   host: localhost
-  username: appacademy
+  username: matt
 

@@ -3,6 +3,7 @@ class LinksController < ApplicationController
 
   def new
     @link = Link.new
+    @comment = Comment.new
     @subs = Sub.all
     render :new
   end
@@ -26,6 +27,7 @@ class LinksController < ApplicationController
 
   def show
     @link = Link.find(params[:id]).decorate
+    @comment = Comment.new
     render :show
   end
 

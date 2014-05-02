@@ -6,5 +6,16 @@
 <h2><%= link_to @link.url, @link.url %></h2>
 
 <p><%= @link.text %></p>
-
+<h3>Subs</h3>
 <p><%= @link.subs_list %></p>
+<%= render partial: 'comments/form', 
+  locals: { link: @link, parent_comment: @comment } %>
+<h3>Comments</h3>
+<ul>
+  <% comments_by_parent = @link.comments_by_parent_id %>
+  <% comments_by_parent[nil].each do |comment| %>
+    <li>
+      <%= comment_partial(comment, comments_by_parent) %>
+    </li>
+  <% end %>
+</ul>
