@@ -3,5 +3,9 @@ Rails.application.routes.draw do
   resources :users
   resource :session, only: [:create, :new, :destroy]
   resources :subs
-  resources :links
+  resources :links do
+    resources :comments, only: [:create]
+  end
+
+  resources :comments, only: [:destroy]
 end
