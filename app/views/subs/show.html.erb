@@ -1,0 +1,12 @@
+<h1><%= @sub.name %></h1>
+<% if current_user == @sub.moderator %>
+  <%= link_to "Edit Sub", edit_sub_url(@sub) %>
+  <%= button_to "Delete Sub", sub_url(@sub), method: :delete %>
+<% end %>
+<p>Links:</p>
+<ul>
+  <% @sub.links.each do |link| %>
+    <li><%= link_to link.title, link_url(link) %> submitted by:
+        <%= link.submitter.username %></li>
+  <% end %>
+</ul>
