@@ -19,4 +19,16 @@ class Link < ActiveRecord::Base
   has_many :link_shares
 
   has_many :subs, through: :link_shares
+
+  has_many :comments
+
+  def comments_by_parent_id
+    comments = Comment.where(link: self)
+    comment_family = Hash.new { |h,k| h[k] = [] }
+
+    comments.each do |comment|
+      comment_family[comment.parent_comment_id] << comment
+    end
+    comment_family
+  end
 end

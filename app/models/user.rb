@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   has_many :links, foreign_key: :submitter_id
 
+  has_many :comments, foreign_key: :author_id
+
   attr_reader :password
 
   def self.generate_session_token
